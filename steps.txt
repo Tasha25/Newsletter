@@ -3,13 +3,13 @@ $ rails new newsletter -d postgresql
 $ cd newsletter
 $ rake db:create
 
-note: you can config your database at       "config/database.yml"
+[Note] you can config your database at       "config/database.yml"
 
-note: to kill server
+[Note] to kill server
     lsof -wni tcp:3000
     kill -9 PID
 
-question: How to use the gitignore file?
+[Question] How to use the gitignore file?
 
 [In App] Create the Event Post first because that is what app is designated to
 do.
@@ -31,7 +31,7 @@ resources :event_posts
 root 'event_posts#index'
 
 [In Terminal]
-note: will show you your routes.
+[Note] will show you your routes.
 $ rake routes
 Prefix Verb   URI Pattern                     Controller#Action
    event_posts GET    /event_posts(.:format)          event_posts#index
@@ -43,6 +43,153 @@ edit_event_post GET    /event_posts/:id/edit(.:format) event_posts#edit
                PUT    /event_posts/:id(.:format)      event_posts#update
                DELETE /event_posts/:id(.:format)      event_posts#destroy
           root GET    /                               event_posts#index
+
+[In App]
+Go to gem files and add the following:
+gem 'haml', '~> 4.0', '>= 4.0.7'
+gem 'devise', '~> 4.2'
+gem 'simple_form', '~> 3.3', '>= 3.3.1'
+
+
+[Note] Refresh server if  you have to and check to see if application index page will
+show.
+
+[In App] event_post_controller.rb
+[Note] We want to be able to create a new event
+def new
+  @event_post = EventPost.new
+end
+
+def create
+  @post = Post.new(post_params)
+end
+
+def post_params
+  params.required(:event_post).permit(:title, :address, :city, :state, :zip_code, :description, :event_contact_number, :event_contact_email_address, :event_link)
+end
+
+[In Web] If you go to http://localhost:3000/event_posts/new
+you will see that a template is missing
+
+[In App]
+Under views> event_posts
+create new.html.haml
+
+
+[In App]
+Under views> event_posts
+create _form.html.haml
+
+[ In App - _form.html.haml]
+= simple_form_for @event_post do |f|
+  = f.input :title
+  = f.input :address
+  = f.input :city
+  = f.input :state
+  = f.input :zip_code
+  = f.input :description
+  = f.input :event_contact_number
+  = f.input :event_contact_email_address
+  = f.input :event_link
+  = f.submit
+
+[In App - new.html.haml]
+[note] will render form that was created in the partial
+= render 'form'
+
+[In App - event_posts_controller.rb]
+[note] we edit the create method to redirect if post saved or no saved
+def create
+  @event_post = EventPost.new(post_params)
+
+  if @event_post.save
+    redirect_to @event_post
+  else
+    render 'new'
+  end
+end
+
+[In Web]
+You can test out the form to see what happens
+
+[Note] you will be missing a show template
+
+[In App - event_posts_controller.rb]
+[code - add the show method]
+def show
+  @event_post = EventPost.find(params[:id])
+end
+
+[In App - views>event_posts]
+create show.html.haml
+
+[code add output]
+
+%h1= @event_post.title
+%p= @event_post.address
+%p= @event_post.city
+%p= @event_post.state
+%p= @event_post.zip_code
+%p= @event_post.description
+%p= @event_post.event_contact_number
+%p= @event_post.event_contact_email_address
+%p= @event_post.event_link
+
+
+[In App - EventPostsController]
+
+class EventPostsController < ApplicationController
+  before_action :find_event_post, only: [:show, :edit, :update, :destroy]
+[note] before action allows us to not write the find event post 4 different
+times.
+  def index
+  end
+
+  def show
+  end
+
+  def new
+    @event_post = EventPost.new
+  end
+
+  def create
+    @event_post = EventPost.new(post_params)
+
+    if @event_post.save
+      redirect_to @event_post
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+  #we are finding the post through the before action.
+  end
+
+  def update
+    if @event_post.update(post_params)
+      redirect_to @event_post
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @event_post.destroy
+    redirect_to root
+  end
+
+  private
+
+  def find_event_post
+    @event_post = EventPost.find(params[:id])
+  end
+
+  def post_params
+    params.required(:event_post).permit(:title, :address, :city, :state, :zip_code, :description, :event_contact_number, :event_contact_email_address, :event_link)
+  end
+end
+
 
 
 ===================================
