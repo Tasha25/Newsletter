@@ -1,9 +1,15 @@
-cd ~
-rails new newsletter -d postgresql
-cd newsletter
+$ cd ~
+$ rails new newsletter -d postgresql
+$ cd newsletter
+$ rake db:create
 
-note: you can config your database at "config/database.yml"
+note: you can config your database at       "config/database.yml"
 
+note: to kill server
+    lsof -wni tcp:3000
+    kill -9 PID
+
+We will create event post
 
 
 
