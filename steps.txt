@@ -9,9 +9,40 @@ note: to kill server
     lsof -wni tcp:3000
     kill -9 PID
 
-We will create event post
+question: How to use the gitignore file?
 
+[In App] Create the Event Post first because that is what app is designated to
+do.
+We will create event_post model
+$ rails g model event_post title:string address:string city:string state:string
+zip_code:string description:text event_contact_number:string
+event_contact_email_address:string event_link:string
 
+$ rake db:migrate
+
+$ rails g controller event_posts
+
+[In App]
+1) Go to EventPostController and add
+def index
+end
+2) Go to routes and add
+resources :event_posts
+root 'event_posts#index'
+
+[In Terminal]
+note: will show you your routes.
+$ rake routes
+Prefix Verb   URI Pattern                     Controller#Action
+   event_posts GET    /event_posts(.:format)          event_posts#index
+               POST   /event_posts(.:format)          event_posts#create
+new_event_post GET    /event_posts/new(.:format)      event_posts#new
+edit_event_post GET    /event_posts/:id/edit(.:format) event_posts#edit
+    event_post GET    /event_posts/:id(.:format)      event_posts#show
+               PATCH  /event_posts/:id(.:format)      event_posts#update
+               PUT    /event_posts/:id(.:format)      event_posts#update
+               DELETE /event_posts/:id(.:format)      event_posts#destroy
+          root GET    /                               event_posts#index
 
 
 ===================================
@@ -33,7 +64,7 @@ email_address:
 has_many events
 belongs_to group
 
-Events
+EventPosts
 name: Bronx Meetup
 address: 123 Address
 city: Bronx
