@@ -1,0 +1,43 @@
+cd ~
+rails new newsletter -d postgresql
+cd newsletter
+
+note: you can config your database at "config/database.yml"
+
+
+
+
+
+===================================
+Next do a group
+Users belong to a group
+Group has many users
+group has a name, group_admin_user, events, newsletter
+
+Example:
+New York Black Entrepreneurs
+Admin_user: Natasha Green
+Events: Created by users
+Newsletter: past newsletters
+
+Users
+first_name: Natasha
+last_name: Green
+email_address:
+has_many events
+belongs_to group
+
+Events
+name: Bronx Meetup
+address: 123 Address
+city: Bronx
+state: NY
+zip_code: 10469
+description: It will be a fun event to hang out with others.
+attachment:
+event_contact_number:
+event_contact_email_address:
+event_link:
+
+Posted by: Natasha Green
+Email Address:
