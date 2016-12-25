@@ -6,8 +6,7 @@
   %h3 Description
   %p= event_post.description
   %p
-  Submitted
-  = event_post.created_at
-  = event_post.start_date
+  Submitted on
+  = "#{event_post.created_at} by #{event_post.user.email}"
 
 %p= link_to "New Event Post", new_event_post_path

@@ -1,5 +1,6 @@
 class EventPostsController < ApplicationController
   before_action :find_event_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
     @event_posts = EventPost.all.order("created_at DESC")
@@ -9,11 +10,11 @@ class EventPostsController < ApplicationController
   end
 
   def new
-    @event_post = EventPost.new
+    @event_post = current_user.event_posts.build
   end
 
   def create
-    @event_post = EventPost.new(post_params)
+    @event_post = current_user.event_posts.build(post_params)
 
     if @event_post.save
       redirect_to @event_post
