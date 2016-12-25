@@ -1,0 +1,79 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ $color1: hsla(12%, 89%, 39%, 1);
+ $color2: hsla(149%, 53%, 89%, 1);
+ $color3: hsla(154%, 34%, 59%, 1);
+ $color4: hsla(150%, 100%, 12%, 1);
+ $color5: hsla(154%, 89%, 4%, 1);
+
+body {
+  font-family: 'News Cycle', sans-serif;
+  background: #fafafa;
+}
+
+.wrapper {
+  width: 60%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.main_header{
+  color: red;
+  background: black;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  #logo {
+    float: left;
+    p {
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-size: 1.2em;
+    }
+  }
+  #buttons {
+    color: white;
+    float: right;
+  }
+}
+
+#event_posts {
+  .event_post {
+    .date{
+    color: purple;
+    }
+    .title{
+      margin: 0;
+      a {
+        color: #397CAC;
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 1.25rem;
+      }
+    }
+  }
+}

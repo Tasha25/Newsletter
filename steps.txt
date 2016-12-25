@@ -210,13 +210,9 @@ end
 
 = render 'form'
 
-= link_to "Cancel", new_event_post
+= link_to "Cancel", event_post_path
 
-[In App]
-I fixed all the views that will be required to work to the EventPostsController
 
-8:00 pm
-Started wit Devise
 
 
 

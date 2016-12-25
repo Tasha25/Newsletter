@@ -1,0 +1,24 @@
+!!!
+%html
+%head
+  %title Automatic Newsletter For You
+  = csrf_meta_tags
+  = stylesheet_link_tag'application', media: 'all', 'data-turbolinks-track': 'reload'
+  %link{"rel": "stylesheet", "href": "https://fonts.googleapis.com/css?family=News+Cycle", "type": "text/css"}
+  %link{"rel": "stylesheet", "href": "https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css", "type": "text/css"}
+  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+%body
+  %header.main_header.clearfix
+    .wrapper
+      #logo
+        %p Automatic Newsletter
+    #buttons
+      = link_to "New Event Post", new_event_post_path
+
+  .wrapper
+    %p.notice= notice
+    %p.alert= alert
+
+  .wrapper
+    = yield
