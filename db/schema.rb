@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161224213627) do
+ActiveRecord::Schema.define(version: 20161225003708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(version: 20161224213627) do
     t.string   "event_link"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.string   "start_date"
+    t.string   "end_date"
+    t.string   "start_time"
+    t.string   "end_time"
+    t.string   "place"
   end
 
 end

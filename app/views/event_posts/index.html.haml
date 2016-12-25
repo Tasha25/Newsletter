@@ -1,1 +1,11 @@
-This is the index placeholder text.
+- @event_posts.each do |event_post|
+  %h2= event_post.title
+  %h3= event_post.place
+  %p= "Start Date #{event_post.start_date} and End Date: #{event_post.end_date}"
+  %p= "Start time: #{event_post.start_time} and End time: #{event_post.end_time}"
+  %h3 Description
+  %p= event_post.description
+  %p
+  Submitted
+  = event_post.created_at
+  = event_post.start_date

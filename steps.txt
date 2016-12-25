@@ -190,6 +190,30 @@ times.
   end
 end
 
+[In App - show.html.haml]
+%h1= @event_post.title
+%p= @event_post.address
+%p= @event_post.city
+%p= @event_post.state
+%p= @event_post.zip_code
+%p= @event_post.description
+%p= @event_post.event_contact_number
+%p= @event_post.event_contact_email_address
+%p= @event_post.event_link
+
+= link_to "Edit", edit_event_post_path(@event_post)
+= link_to "Delete", event_post_path(@event_post), method: :delete, data: { confirm: "Are you sure you want to delete?"}
+= link_to "Home", root_path
+
+[In App - edit.html.haml]
+%h1 Edit post
+
+= render 'form'
+
+= link_to "Cancel", event_post_path
+
+
+
 
 
 ===================================
