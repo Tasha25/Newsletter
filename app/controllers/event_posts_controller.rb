@@ -1,6 +1,5 @@
 class EventPostsController < ApplicationController
   before_action :find_event_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
 
   def index
     @event_posts = EventPost.all.order("created_at DESC")
