@@ -1,4 +1,5 @@
 %h1= @event_post.title
+%p= image_tag @event_post.image.url (:medium)
 %p= "Start date and time: #{@event_post.start_date} and #{@event_post.start_time}"
 %p= "End date and time: #{@event_post.end_date} and #{@event_post.end_time}"
 %p= "Location/Place: #{@event_post.place}"

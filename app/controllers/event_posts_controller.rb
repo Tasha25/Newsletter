@@ -45,6 +45,6 @@ class EventPostsController < ApplicationController
   end
 
   def post_params
-    params.required(:event_post).permit(:title, :address, :city, :state, :zip_code, :description, :event_contact_number, :event_contact_email_address, :event_link, :start_date, :end_date, :start_time, :end_time, :place)
+    params.required(:event_post).permit(:title, :address, :city, :state, :zip_code, :description, :event_contact_number, :event_contact_email_address, :event_link, :start_date, :end_date, :start_time, :end_time, :place, :image)
   end
 end

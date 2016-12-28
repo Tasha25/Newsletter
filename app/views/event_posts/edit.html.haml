@@ -1,5 +1,6 @@
-%h1 Edit post
 
+%h1 Edit post
+= image_tag @event_post.image.url(:medium)
 = render 'form'
 
 = link_to "Cancel", event_post_path
